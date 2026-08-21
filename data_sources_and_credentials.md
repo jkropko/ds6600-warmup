@@ -12,7 +12,7 @@ Everything the Congress Transparency Dashboard is built from, what each source i
 |---|---|---|---|
 | [Congress.gov API](#congressgov-api) | API key | Instant | 8/25 |
 | [openFEC](#openfec) | API key via api.data.gov | Instant | 9/24 |
-| [NewsAPI](#newsapi) | API key | A day or two | 10/8 |
+| [GPO Congressional Record](#gpo-congressional-record) | None | — | 10/8 |
 | [OpenSecrets bulk data](#opensecrets-bulk-data) | Account + manual approval | **Possibly weeks** | 9/17 |
 | [Voteview](#voteview) | None | — | 9/17 |
 | [GPO govinfo bulk data](#gpo-govinfo-bulk-data) | None | — | 9/29 |
@@ -48,15 +48,17 @@ For large result sets the FEC recommends keyset pagination using `last_indexes` 
 
 ---
 
-### NewsAPI
+### GPO Congressional Record
 
-**What it gives us:** news articles mentioning members by name. This is also the source that forces us to learn fuzzy matching, since articles say "Sen. Warner" rather than a bioguide ID.
+*(This one needs no key — it's listed here with the API sources because of when we use it.)*
 
-**Get a key:** <https://newsapi.org/register> — usually approved within a day or two.
+**What it gives us:** the official record of floor proceedings — who spoke, when, and what they said. It's also where we learn entity resolution, because the Record refers to members the way the chamber does rather than the way a database would.
 
-**Notes.** The free tier only reaches back about a month. That makes this the one source where *failing to run your pipeline destroys data permanently* — an article you don't capture in November is not available in December. We use it as the motivating example for scheduling on 11/10.
+**Where it lives:** <https://www.govinfo.gov/bulkdata/CREC> — same repository as the bill text, same download mechanism, same XML tooling.
 
-The free tier also restricts production use, which is worth thinking about when you deploy. We'll discuss it.
+**Why it's the hard case.** Bills have identifiers. Votes have identifiers. The Congressional Record has *"the gentlewoman from California."* No name, no ID, nothing to match on — you have to work out who that is from the chamber, the state, and who had the floor. Roughly a third of references look like this, and no amount of string similarity will help with any of them.
+
+**Public domain, permanently archived, no rate limit.** Nothing is lost if you don't run your pipeline for a month.
 
 ---
 
