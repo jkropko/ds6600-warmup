@@ -152,7 +152,6 @@ Four sources, four very different lead times. Start all of them now.
 |---|---|---|
 | **Congress.gov** | <https://api.congress.gov/sign-up/> | Instant |
 | **openFEC** | <https://api.data.gov/signup/> | Instant |
-| **NewsAPI** | <https://newsapi.org/register> | A day or two |
 | **OpenSecrets bulk** | <https://www.opensecrets.org/bulk-data/signup> | **Possibly weeks — start today** |
 
 OpenSecrets requires registering an account, agreeing to educational-use terms, and then waiting for manual approval. There's no published turnaround. Start it now even though we won't use it until September 17.
